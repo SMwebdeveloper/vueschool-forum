@@ -6,8 +6,6 @@
 </template>
 
 <script>
-const name = 'Alex'
-const fasdfsa = 'dfsad'
 export default {
   name: 'app'
 }
