@@ -8,6 +8,7 @@
   <script>
   import sourceData from '@/data'
   import ThreadList from '@/components/ThreadList.vue'
+  console.log(sourceData)
   export default {
     name: 'HelloWorld',
     components: {
