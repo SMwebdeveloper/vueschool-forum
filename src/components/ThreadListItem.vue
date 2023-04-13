@@ -26,11 +26,7 @@
 </template>
 <script>
 import sourceData from '@/data'
-import AppDate from './AppDate.vue'
 export default {
-  components: {
-    AppDate
-  },
   props: {
     thread: {
       required: true,
