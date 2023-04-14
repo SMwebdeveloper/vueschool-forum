@@ -38,11 +38,11 @@
           <a href="#">
             <img
               class="avatar-small"
-              src="@/assets/img/user-image.png"
-              alt=""
+              :src="user.avatar"
+              alt="user image"
             />
             <span>
-              Alex Kyriakidis
+              {{ user.name }}
               <img
                 class="icon-profile"
                 src="../assets/img/arrow-profile.svg"
@@ -67,3 +67,13 @@
     </nav>
   </header>
 </template>
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  computed: {
+    ...mapGetters({
+      'user': 'authUser'
+    })
+  }
+}
+</script>
