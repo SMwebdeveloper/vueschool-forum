@@ -6,7 +6,6 @@
 </template>
 <script>
 import CategoryListItem from '@/components/CategoryListItem.vue'
-import sourceData from '@/data'
 export default {
   components: {
     CategoryListItem
@@ -19,7 +18,7 @@ export default {
   },
   computed: {
     category () {
-      return sourceData.categories[this.id]
+      return this.$store.state.categories[this.id]
     }
   }
 }
