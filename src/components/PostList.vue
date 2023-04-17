@@ -18,6 +18,9 @@ export default {
       required: true,
       type: Array
     }
+  },
+  mounted () {
+    console.log(this.posts)
   }
 }
 </script>

@@ -48,8 +48,8 @@ export default {
   },
   data () {
     return {
-      text: '',
       title: '',
+      text: ''
     }
   },
   methods: {
