@@ -62,7 +62,6 @@ export default {
     create () {
       const post = {
         text: this.text,
-        publishedAt: Math.floor(Date.now() / 1000),
         threadId: this.threadId
       }
       this.text = ''
