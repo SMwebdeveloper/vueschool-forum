@@ -44,6 +44,9 @@ export default {
           this.$emit('save', {post})
         })
     },
+    cancel () {
+      this.$emit('cancel')
+    },
     create () {
       const post = {
         text: this.text,
