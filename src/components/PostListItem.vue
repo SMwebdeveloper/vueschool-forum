@@ -23,14 +23,14 @@
       </template>
       <div v-else>
         <PostEditor
-          :post="{text: post.text}"
-          @save="editing = false"
-          @cancel="editing = false"
+         :post="post"
+         @save="editing = false"
         />
       </div>
     </div>
 
     <div class="post-date text-faded">
+      <div v-if="post.edited" class="edition-info">edited</div>
       <AppDate :timestamp="post.publishedAt"/>
     </div>
   </div>

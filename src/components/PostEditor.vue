@@ -24,19 +24,7 @@ export default {
       required: false
     },
     post: {
-      type: Object,
-      validator: obj => {
-        const keyIsValid = typeof obj['.key'] === 'string'
-        const textIsValid = typeof obj.text === 'string'
-        const valid = keyIsValid && textIsValid
-        if (!keyIsValid) {
-          console.log('The post prop object must include a `.key` attributes.')
-        }
-        if (!textIsValid) {
-          console.log('The post prop object must include a `text` attributes.')
-        }
-        return valid
-      }
+      type: Object
     }
   },
   data () {
@@ -56,15 +44,14 @@ export default {
           this.$emit('save', {post})
         })
     },
-    cancel () {
-      this.$emit('cancel')
-    },
     create () {
       const post = {
         text: this.text,
         threadId: this.threadId
       }
       this.text = ''
+
+      this.$emit('save', post)
       return this.$store.dispatch('createPost', post)
     },
     update () {
