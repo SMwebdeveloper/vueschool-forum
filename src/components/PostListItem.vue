@@ -23,9 +23,9 @@
       </template>
       <div v-else>
         <PostEditor
-         :post="{text: post.text}"
-         @save="editing = false"
-         @cancel="editing = false"
+        :post="post"
+        @save="editing = false"
+        @cancel="editing = false"
         />
       </div>
     </div>
