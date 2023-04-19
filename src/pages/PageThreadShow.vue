@@ -42,9 +42,6 @@ export default {
         postsId.includes(post['.key'])
       )
     }
-  },
-  mounted () {
-    console.log(this.posts)
   }
 }
 </script>
