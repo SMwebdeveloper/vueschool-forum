@@ -25,8 +25,10 @@ export default new Vuex.Store({
     authUser (state) {
       return state.users[state.authId]
     },
+
     userThreadsCount: state => id => countObjectProperties(state.users[id].threads),
-    userPostsCount: state => id => countObjectProperties(state.users[id].posts)
+    userPostsCount: state => id => countObjectProperties(state.users[id].posts),
+    threadReplicesCount: state => id => countObjectProperties(state.threads[id].posts) - 1
   },
 
   actions: {

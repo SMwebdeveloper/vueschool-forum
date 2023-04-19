@@ -12,7 +12,7 @@
     </h1>
     <p>
       By <a href="#" class="link-unstyled">Robin</a>, <AppDate :timestamp="thread.publishedAt"/>.
-      <span style="float:right; margin-top: 2px" class="hide-mobile text-faded text-small">3 replies by 3 cintributors</span>
+      <span style="float:right; margin-top: 2px" class="hide-mobile text-faded text-small">{{repliesCount}} replies by {{contributorsCount}} cintributors</span>
     </p>
     <PostList :posts="posts" />
     <PostEditor :threadId="id" />
@@ -35,6 +35,17 @@ export default {
   computed: {
     thread () {
       return this.$store.state.threads[this.id]
+    },
+    repliesCount () {
+      return this.$store.getters.threadReplicesCount(this.thread['.key'])
+    },
+    contributorsCount () {
+      const replies = Object.keys(this.thread.posts)
+        .filter(postId => postId !== this.thread.firstPostId)
+        .map(postId => this.$store.state.posts[postId])
+
+      const userId = replies.map(post => post.userId)
+      return userId.filter((item, index) => index === userId.indexOf(item)).length
     },
     posts () {
       const postsId = Object.values(this.thread.posts)
