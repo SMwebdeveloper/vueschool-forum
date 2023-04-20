@@ -99,33 +99,22 @@ export default new Vuex.Store({
     updateUser ({commit}, user) {
       commit('setUser', {userId: user['.key'], user})
     },
-    fetchThread ({commit, state}, {id}) {
-      console.log('binasa', id)
-      return new Promise((resolve, reject) => {
-        firebase.database().ref('threads').child(id).once('value', snapshot => {
-          const thread = snapshot.val()
-          commit('setThread', {threadId: snapshot.key, thread: {...thread, '.key': snapshot.key}})
-          resolve(state.threads[id])
-        })
-      })
+    fetchThread ({dispatch}, {id}) {
+      return dispatch('fetchItem', {resource: 'threads', id, emoji: '🎞'})
     },
-    fetchUser ({commit, state}, {id}) {
-      console.log('haligi', id)
-      return new Promise((resolve, reject) => {
-        firebase.database().ref('users').child(id).once('value', snapshot => {
-          const user = snapshot.val()
-          commit('setUser', {userId: snapshot.key, user: {...user, '.key': snapshot.key}})
-          resolve(state.users[id])
-        })
-      })
+    fetchUser ({dispatch}, {id}) {
+      return dispatch('fetchItem', {resource: 'users', id, emoji: '🎢'})
     },
-    fetchPost ({commit, state}, {id}) {
-      console.log('osha', id)
+    fetchPost ({dispatch}, {id}) {
+      return dispatch('fetchItem', {resource: 'posts', id, emoji: '🎈'})
+    },
+    fetchItem ({commit, state}, {id, emoji, resource}) {
+      console.log('osha', emoji, id)
       return new Promise((resolve, reject) => {
-        firebase.database().ref('posts').child(id).once('value', snapshot => {
-          const post = snapshot.val()
-          commit('setPost', {postId: snapshot.key, post: {...post, '.key': snapshot.key}})
-          resolve(state.posts[id])
+        firebase.database().ref(resource).child(id).once('value', snapshot => {
+          const item = snapshot.val()
+          commit('setItem', {resource, id: snapshot.key, item: {...item, '.key': snapshot.val()}})
+          resolve(state[resource][id])
         })
       })
     }
@@ -139,6 +128,10 @@ export default new Vuex.Store({
     },
     setThread (state, {thread, threadId}) {
       Vue.set(state.threads, threadId, thread)
+    },
+    setItem (state, {item, id, resource}) {
+      item['.key'] = id
+      Vue.set(state[resource], id, item)
     },
     appendPostToThread: makeAppendChildToParentMutation({parent: 'threads', child: 'posts'}),
 
