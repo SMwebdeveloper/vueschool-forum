@@ -1,19 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {countObjectProperties} from '@/utils'
 import firebase from 'firebase'
+import {countObjectProperties} from '@/utils'
 
 Vue.use(Vuex)
 
-const makeAppendChildToParentMutation = ({parent, child}) => {
-  return (state, {childId, parentId}) => {
+const makeAppendChildToParentMutation = ({parent, child}) =>
+  (state, {childId, parentId}) => {
     const resource = state[parent][parentId]
     if (!resource[child]) {
       Vue.set(resource, child, {})
     }
     Vue.set(resource[child], childId, childId)
   }
-}
 
 export default new Vuex.Store({
   state: {
@@ -33,7 +32,7 @@ export default new Vuex.Store({
 
     userThreadsCount: state => id => countObjectProperties(state.users[id].threads),
     userPostsCount: state => id => countObjectProperties(state.users[id].posts),
-    threadReplicesCount: state => id => countObjectProperties(state.threads[id].posts) - 1
+    threadRepliesCount: state => id => countObjectProperties(state.threads[id].posts) - 1
   },
 
   actions: {
@@ -48,6 +47,7 @@ export default new Vuex.Store({
       commit('appendPostToUser', {parentId: post.userId, childId: postId})
       return Promise.resolve(state.posts[postId])
     },
+
     createThread ({state, commit, dispatch}, {text, title, forumId}) {
       return new Promise((resolve, reject) => {
         const threadId = 'greatThread' + Math.random()
@@ -67,6 +67,7 @@ export default new Vuex.Store({
         resolve(state.threads[threadId])
       })
     },
+
     updateThread ({state, commit, dispatch}, {title, text, id}) {
       return new Promise((resolve, reject) => {
         const thread = state.threads[id]
@@ -79,6 +80,7 @@ export default new Vuex.Store({
           })
       })
     },
+
     updatePost ({state, commit}, {id, text}) {
       return new Promise((resolve, reject) => {
         const post = state.posts[id]
@@ -96,49 +98,78 @@ export default new Vuex.Store({
         resolve(post)
       })
     },
+
     updateUser ({commit}, user) {
       commit('setUser', {userId: user['.key'], user})
     },
+
     fetchThread ({dispatch}, {id}) {
-      return dispatch('fetchItem', {resource: 'threads', id, emoji: '🎞'})
+      return dispatch('fetchItem', {resource: 'threads', id, emoji: '📄'})
     },
+
     fetchUser ({dispatch}, {id}) {
-      return dispatch('fetchItem', {resource: 'users', id, emoji: '🎢'})
+      return dispatch('fetchItem', {resource: 'users', id, emoji: '🙋'})
     },
+
     fetchPost ({dispatch}, {id}) {
-      return dispatch('fetchItem', {resource: 'posts', id, emoji: '🎈'})
+      return dispatch('fetchItem', {resource: 'posts', id, emoji: '💬'})
     },
+
+    fetchForums ({dispatch}, {ids}) {
+      return dispatch('fetchItems', {resource: 'forums', emoji: '🌧', ids})
+    },
+
     fetchPosts ({dispatch}, {ids}) {
-      return dispatch('fetchItems', {resource: 'posts', emoji: 'chat', ids})
+      return dispatch('fetchItems', {resource: 'posts', emoji: '💬', ids})
     },
-    fetchItem ({commit, state}, {id, emoji, resource}) {
-      console.log('osha', emoji, id)
+
+    fetchAllCategories ({state, commit}) {
+      console.log('🔥', '🏷', 'all')
+      return new Promise((resolve, reject) => {
+        firebase.database().ref('categories').once('value', snapshot => {
+          const categoriesObject = snapshot.val()
+          Object.keys(categoriesObject).forEach(categoryId => {
+            const category = categoriesObject[categoryId]
+            commit('setItem', {resource: 'categories', id: categoryId, item: category})
+          })
+          resolve(Object.values(state.categories))
+        })
+      })
+    },
+
+    fetchItem ({state, commit}, {id, emoji, resource}) {
+      console.log('🔥‍', emoji, id)
       return new Promise((resolve, reject) => {
         firebase.database().ref(resource).child(id).once('value', snapshot => {
-          const item = snapshot.val()
-          commit('setItem', {resource, id: snapshot.key, item: {...item, '.key': snapshot.val()}})
+          commit('setItem', {resource, id: snapshot.key, item: snapshot.val()})
           resolve(state[resource][id])
         })
       })
     },
+
     fetchItems ({dispatch}, {ids, resource, emoji}) {
       return Promise.all(ids.map(id => dispatch('fetchItem', {id, resource, emoji})))
     }
   },
+
   mutations: {
     setPost (state, {post, postId}) {
       Vue.set(state.posts, postId, post)
     },
+
     setUser (state, {user, userId}) {
       Vue.set(state.users, userId, user)
     },
+
     setThread (state, {thread, threadId}) {
       Vue.set(state.threads, threadId, thread)
     },
+
     setItem (state, {item, id, resource}) {
       item['.key'] = id
       Vue.set(state[resource], id, item)
     },
+
     appendPostToThread: makeAppendChildToParentMutation({parent: 'threads', child: 'posts'}),
 
     appendPostToUser: makeAppendChildToParentMutation({parent: 'users', child: 'posts'}),
