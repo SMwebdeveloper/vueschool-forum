@@ -1,17 +1,20 @@
-<template lang="">
-    <div>
-      <ForumListItem
-        v-for="forum in forums"
-        :forum="forum"
-        :key="forum['.key']"/>
-    </div>
+<template>
+  <div>
+    <ForumListItem
+      v-for="forum in forums"
+      :forum="forum"
+      :key="forum['.key']"
+    />
+  </div>
 </template>
+
 <script>
-import ForumListItem from './ForumListItem.vue'
+import ForumListItem from './ForumListItem'
 export default {
   components: {
     ForumListItem
   },
+
   props: {
     forums: {
       required: true,
@@ -20,5 +23,5 @@ export default {
   }
 }
 </script>
-<style lang="">
-</style>
+
+<style scoped></style>

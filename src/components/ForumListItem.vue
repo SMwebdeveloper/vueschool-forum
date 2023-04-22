@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div class="forum-listing">
     <div class="forum-details">
       <router-link
@@ -20,8 +20,10 @@
     </div>
   </div>
 </template>
+
 <script>
 import { countObjectProperties } from '@/utils'
+
 export default {
   props: {
     forum: {
@@ -29,6 +31,7 @@ export default {
       type: Object
     }
   },
+
   computed: {
     threadsCount () {
       return countObjectProperties(this.forum.threads)
@@ -36,4 +39,5 @@ export default {
   }
 }
 </script>
-<style lang=""></style>
+
+<style scoped></style>
