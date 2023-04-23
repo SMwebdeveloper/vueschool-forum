@@ -8,16 +8,19 @@
   </div>
 </template>
 <script>
-import sourceData from '@/data'
 import CategoryListItem from './CategoryListItem'
 export default {
   components: {
     CategoryListItem
   },
-  data () {
-    return {
-      categories: Object.values(sourceData.categories)
+  props: {
+    categories: {
+      required: true,
+      type: Array
     }
+  },
+  mounted () {
+    console.log(this.categories)
   }
 }
 </script>

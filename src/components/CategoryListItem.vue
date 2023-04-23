@@ -23,11 +23,13 @@ export default {
   },
   computed: {
     categoryForums () {
-      return this.$store.state.forums
+      return Object.values(this.$store.state.forums)
+        .filter(forum => forum.categoryId === this.category['.key'])
     }
   },
   mounted () {
-    console.log(this.categoryForums)
+    // console.log(this.categoryForums)
+    // console.log(this.category)
   }
 }
 </script>

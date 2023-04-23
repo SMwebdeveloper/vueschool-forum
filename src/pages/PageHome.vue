@@ -12,13 +12,11 @@ export default {
   components: {
     CategoryList
   },
-
   computed: {
     categories () {
       return Object.values(this.$store.state.categories)
     }
   },
-
   beforeCreate () {
     this.$store.dispatch('fetchAllCategories')
       .then(categories => {
