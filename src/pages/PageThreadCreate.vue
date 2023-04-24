@@ -1,8 +1,7 @@
 <template>
-  <div class="col-full push-top">
-    <h1>
-      Create new thread in <i>{{ forum.name }}</i>
-    </h1>
+  <div v-if="forum" class="col-full push-top">
+
+    <h1>Create new thread in <i>{{forum.name}}</i></h1>
 
     <ThreadEditor
       @save="save"
@@ -41,6 +40,12 @@ export default {
     cancel () {
       this.$router.push({name: 'Forum', params: {id: this.forum['.key']}})
     }
+  },
+  created () {
+    this.$store.dispatch('fetchForum', {id: this.forumId})
   }
 }
 </script>
+
+<style scoped>
+</style>

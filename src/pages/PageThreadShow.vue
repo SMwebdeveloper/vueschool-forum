@@ -45,7 +45,7 @@ export default {
       return this.$store.state.threads[this.id]
     },
     repliesCount () {
-      return this.$store.getters.threadReplicesCount(this.thread['.key'])
+      return this.$store.getters.threadRepliesCount(this.thread['.key'])
     },
     user () {
       return this.$store.state.users[this.thread.userId]

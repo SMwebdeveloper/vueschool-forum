@@ -107,6 +107,14 @@ export default new Vuex.Store({
       return dispatch('fetchItem', {resource: 'threads', id, emoji: '📄'})
     },
 
+    fetchCategory ({dispatch}, {id}) {
+      return dispatch('fetchItem', {resource: 'categories', id, emoji: '🏷'})
+    },
+
+    fetchForum ({dispatch}, {id}) {
+      return dispatch('fetchItem', {resource: 'forums', id, emoji: '🌧'})
+    },
+
     fetchUser ({dispatch}, {id}) {
       return dispatch('fetchItem', {resource: 'users', id, emoji: '🙋'})
     },
@@ -116,11 +124,21 @@ export default new Vuex.Store({
     },
 
     fetchForums ({dispatch}, {ids}) {
-      return dispatch('fetchItems', {resource: 'forums', emoji: '🌧', ids})
+      return dispatch('fetchItems', {resource: 'forums', ids, emoji: '🌧'})
     },
 
     fetchPosts ({dispatch}, {ids}) {
-      return dispatch('fetchItems', {resource: 'posts', emoji: '💬', ids})
+      return dispatch('fetchItems', {resource: 'posts', ids, emoji: '💬'})
+    },
+    fetchCategories (context, {ids}) {
+      return context.dispatch('fetchItems', {resource: 'categories', ids, emoji: '🏷'})
+    },
+
+    fetchThreads (context, {ids}) {
+      return context.dispatch('fetchItems', {resource: 'threads', ids, emoji: '🌧'})
+    },
+    fetchUsers (context, {ids}) {
+      return context.dispatch('fetchItems', {resource: 'users', ids, emoji: '🤵'})
     },
 
     fetchAllCategories ({state, commit}) {
