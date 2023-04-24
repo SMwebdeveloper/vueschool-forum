@@ -37,6 +37,7 @@ export default {
     NProgress.start()
     this.$router.beforeEach((to, from, next) => {
       this.showPage = false
+      NProgress.start()
       next()
     })
   }
