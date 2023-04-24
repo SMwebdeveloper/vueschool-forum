@@ -1,5 +1,5 @@
 <template>
-  <div v-if="thread && text" class="col-full push-top">
+  <div v-if="asyncDataStatus_ready" class="col-full push-top">
     <h1>
       Editing <i>{{ thread.name }}</i>
     </h1>
@@ -16,10 +16,12 @@
 <script>
 import ThreadEditor from '@/components/ThreadEditor'
 import { mapActions } from 'vuex'
+import asyncDataStatus from '@/mixins/asyncDataStatus'
 export default {
   components: {
     ThreadEditor
   },
+  mixins: [asyncDataStatus],
   props: {
     id: {
       type: String,
@@ -53,6 +55,7 @@ export default {
   created () {
     this.fetchThread({id: this.id})
       .then(thread => this.fetchPost({id: thread.firstPostId}))
+      .then(() => this.asyncDataStatus_fetched())
   }
 }
 </script>
