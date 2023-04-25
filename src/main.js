@@ -31,8 +31,5 @@ new Vue({
   router,
   store,
   template: '<App/>',
-  components: { App },
-  beforeCreate () {
-    this.$store.dispatch('fetchUser', {id: store.state.authId})
-  }
+  components: { App }
 })
