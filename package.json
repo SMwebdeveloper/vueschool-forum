@@ -12,6 +12,7 @@
     "db:seed": "firebase database:set //new_node src/data.json"
   },
   "dependencies": {
+    "dotenv": "^5.0.1",
     "firebase": "^4.12.1",
     "firebase-tools": "^11.28.0",
     "global": "^4.4.0",
