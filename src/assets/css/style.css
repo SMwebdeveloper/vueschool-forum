@@ -1210,6 +1210,7 @@ ul {
 
 .navbar-user img {
   margin-right: 10px;
+  objec-fit:contain;
 }
 
 .btn-hamburger {
