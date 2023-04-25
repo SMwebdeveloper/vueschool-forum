@@ -11,13 +11,13 @@ Vue.config.productionTip = false
 
 // initialize firebase
 firebase.initializeApp({
-  apiKey: 'AIzaSyCWudSZYTXeG1bQ2gISmFCT5xgx70qTfDM',
-  authDomain: 'vue-school-forum-13cab.firebaseapp.com',
-  databaseURL: 'https://vue-school-forum-13cab-default-rtdb.firebaseio.com',
-  projectId: 'vue-school-forum-13cab',
-  storageBucket: 'vue-school-forum-13cab.appspot.com',
-  messagingSenderId: '202803263997',
-  appId: '1:202803263997:web:c3f54e26fa45d9dad58194'
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUGKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID
 })
 
 /* eslint-disable no-new */
