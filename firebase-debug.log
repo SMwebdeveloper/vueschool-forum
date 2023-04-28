@@ -1,0 +1,70 @@
+[debug] [2023-04-26T12:30:12.439Z] ----------------------------------------------------------------------
+[debug] [2023-04-26T12:30:12.443Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\User\Desktop\vue kurs\vueschool-forum\node_modules\firebase-tools\lib\bin\firebase.js database:set //new_node src/data.json
+[debug] [2023-04-26T12:30:12.444Z] CLI Version:   11.28.0
+[debug] [2023-04-26T12:30:12.444Z] Platform:      win32
+[debug] [2023-04-26T12:30:12.445Z] Node Version:  v18.15.0
+[debug] [2023-04-26T12:30:12.446Z] Time:          Wed Apr 26 2023 17:30:12 GMT+0500 (GMT+05:00)
+[debug] [2023-04-26T12:30:12.447Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-04-26T12:30:12.452Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-04-26T12:30:12.631Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-04-26T12:30:12.632Z] > authorizing via signed-in user (samandarwebdeveloper@gmail.com)
+[debug] [2023-04-26T12:30:12.632Z] [iam] checking project vue-school-forum-13cab for permissions ["firebase.projects.get","firebasedatabase.instances.update"]
+[debug] [2023-04-26T12:30:12.634Z] > refreshing access token with scopes: []
+[debug] [2023-04-26T12:30:12.635Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-04-26T12:30:12.635Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-04-26T12:30:13.104Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-04-26T12:30:13.105Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-04-26T12:30:13.123Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/vue-school-forum-13cab:testIamPermissions [none]
+[debug] [2023-04-26T12:30:13.123Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/vue-school-forum-13cab:testIamPermissions x-goog-quota-user=projects/vue-school-forum-13cab
+[debug] [2023-04-26T12:30:13.123Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vue-school-forum-13cab:testIamPermissions {"permissions":["firebase.projects.get","firebasedatabase.instances.update"]}
+[debug] [2023-04-26T12:30:13.393Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-04-26T12:30:13.394Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-04-26T12:30:14.318Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/vue-school-forum-13cab:testIamPermissions 200
+[debug] [2023-04-26T12:30:14.319Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vue-school-forum-13cab:testIamPermissions {"permissions":["firebase.projects.get","firebasedatabase.instances.update"]}
+[debug] [2023-04-26T12:30:14.323Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vue-school-forum-13cab [none]
+[debug] [2023-04-26T12:30:14.930Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vue-school-forum-13cab 200
+[debug] [2023-04-26T12:30:14.930Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vue-school-forum-13cab {"projectId":"vue-school-forum-13cab","projectNumber":"202803263997","displayName":"Vue School Forum","name":"projects/vue-school-forum-13cab","resources":{"hostingSite":"vue-school-forum-13cab","realtimeDatabaseInstance":"vue-school-forum-13cab-default-rtdb"},"state":"ACTIVE","etag":"1_149d676b-2d09-494d-a141-74fa0bf4c14b"}
+[debug] [2023-04-26T12:30:14.932Z] >>> [apiv2][query] GET https://firebasedatabase.googleapis.com/v1beta/projects/vue-school-forum-13cab/locations/-/instances/vue-school-forum-13cab-default-rtdb [none]
+[debug] [2023-04-26T12:30:15.542Z] <<< [apiv2][status] GET https://firebasedatabase.googleapis.com/v1beta/projects/vue-school-forum-13cab/locations/-/instances/vue-school-forum-13cab-default-rtdb 200
+[debug] [2023-04-26T12:30:15.542Z] <<< [apiv2][body] GET https://firebasedatabase.googleapis.com/v1beta/projects/vue-school-forum-13cab/locations/-/instances/vue-school-forum-13cab-default-rtdb {"name":"projects/202803263997/locations/us-central1/instances/vue-school-forum-13cab-default-rtdb","project":"projects/202803263997","databaseUrl":"https://vue-school-forum-13cab-default-rtdb.firebaseio.com","type":"DEFAULT_DATABASE","state":"ACTIVE"}
+[debug] [2023-04-26T12:30:18.603Z] >>> [apiv2][query] PUT https://new_node.json/ ns=vue-school-forum-13cab-default-rtdb
+[debug] [2023-04-26T12:30:18.604Z] >>> [apiv2][body] PUT https://new_node.json/ [stream]
+[debug] Failed to make request to https://new_node.json/?ns=vue-school-forum-13cab-default-rtdb
+[error] 
+[error] Error: Unexpected error while setting data: FirebaseError: Failed to make request to https://new_node.json/?ns=vue-school-forum-13cab-default-rtdb
+[debug] [2023-04-28T12:07:56.675Z] ----------------------------------------------------------------------
+[debug] [2023-04-28T12:07:56.680Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\User\Desktop\vue kurs\vueschool-forum\node_modules\firebase-tools\lib\bin\firebase.js database:set //new_node src/data.json
+[debug] [2023-04-28T12:07:56.681Z] CLI Version:   11.28.0
+[debug] [2023-04-28T12:07:56.682Z] Platform:      win32
+[debug] [2023-04-28T12:07:56.682Z] Node Version:  v18.15.0
+[debug] [2023-04-28T12:07:56.683Z] Time:          Fri Apr 28 2023 17:07:56 GMT+0500 (GMT+05:00)
+[debug] [2023-04-28T12:07:56.684Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-04-28T12:07:56.689Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-04-28T12:07:56.855Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-04-28T12:07:56.855Z] > authorizing via signed-in user (samandarwebdeveloper@gmail.com)
+[debug] [2023-04-28T12:07:56.855Z] [iam] checking project vue-school-forum-13cab for permissions ["firebase.projects.get","firebasedatabase.instances.update"]
+[debug] [2023-04-28T12:07:56.857Z] > refreshing access token with scopes: []
+[debug] [2023-04-28T12:07:56.858Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-04-28T12:07:56.858Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-04-28T12:07:57.355Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-04-28T12:07:57.357Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-04-28T12:07:57.384Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/vue-school-forum-13cab:testIamPermissions [none]
+[debug] [2023-04-28T12:07:57.385Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/vue-school-forum-13cab:testIamPermissions x-goog-quota-user=projects/vue-school-forum-13cab
+[debug] [2023-04-28T12:07:57.385Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vue-school-forum-13cab:testIamPermissions {"permissions":["firebase.projects.get","firebasedatabase.instances.update"]}
+[debug] [2023-04-28T12:07:57.615Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-04-28T12:07:57.616Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-04-28T12:07:58.536Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/vue-school-forum-13cab:testIamPermissions 200
+[debug] [2023-04-28T12:07:58.537Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vue-school-forum-13cab:testIamPermissions {"permissions":["firebase.projects.get","firebasedatabase.instances.update"]}
+[debug] [2023-04-28T12:07:58.541Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vue-school-forum-13cab [none]
+[debug] [2023-04-28T12:07:59.154Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vue-school-forum-13cab 200
+[debug] [2023-04-28T12:07:59.155Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vue-school-forum-13cab {"projectId":"vue-school-forum-13cab","projectNumber":"202803263997","displayName":"Vue School Forum","name":"projects/vue-school-forum-13cab","resources":{"hostingSite":"vue-school-forum-13cab","realtimeDatabaseInstance":"vue-school-forum-13cab-default-rtdb"},"state":"ACTIVE","etag":"1_9219d4b0-3109-4375-a8ab-f7c5858ff61b"}
+[debug] [2023-04-28T12:07:59.157Z] >>> [apiv2][query] GET https://firebasedatabase.googleapis.com/v1beta/projects/vue-school-forum-13cab/locations/-/instances/vue-school-forum-13cab-default-rtdb [none]
+[debug] [2023-04-28T12:07:59.968Z] <<< [apiv2][status] GET https://firebasedatabase.googleapis.com/v1beta/projects/vue-school-forum-13cab/locations/-/instances/vue-school-forum-13cab-default-rtdb 200
+[debug] [2023-04-28T12:07:59.969Z] <<< [apiv2][body] GET https://firebasedatabase.googleapis.com/v1beta/projects/vue-school-forum-13cab/locations/-/instances/vue-school-forum-13cab-default-rtdb {"name":"projects/202803263997/locations/us-central1/instances/vue-school-forum-13cab-default-rtdb","project":"projects/202803263997","databaseUrl":"https://vue-school-forum-13cab-default-rtdb.firebaseio.com","type":"DEFAULT_DATABASE","state":"ACTIVE"}
+[debug] [2023-04-28T12:08:02.886Z] >>> [apiv2][query] PUT https://new_node.json/ ns=vue-school-forum-13cab-default-rtdb
+[debug] [2023-04-28T12:08:02.886Z] >>> [apiv2][body] PUT https://new_node.json/ [stream]
+[debug] Failed to make request to https://new_node.json/?ns=vue-school-forum-13cab-default-rtdb
+[error] 
+[error] Error: Unexpected error while setting data: FirebaseError: Failed to make request to https://new_node.json/?ns=vue-school-forum-13cab-default-rtdb
