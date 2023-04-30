@@ -27,7 +27,7 @@ import { mapGetters } from 'vuex'
 import PostList from '../components/PostList'
 import UseProfileCard from '../components/UseProfileCard'
 import UseProfileCardEditor from '../components/UseProfileCardEditor'
-import store from '@/store'
+
 export default {
   components: {
     PostList,
@@ -50,13 +50,6 @@ export default {
           .filter(post => post.userId === this.user['.key'])
       }
       return []
-    }
-  },
-  beforeRouteEnter (to, from, next) {
-    if (store.state.authId) {
-      next()
-    } else {
-      next({name: 'Home'})
     }
   },
   created () {
