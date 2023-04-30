@@ -1,6 +1,7 @@
 <template>
   <div class="flex-grid">
-    <UseProfileCard
+    <h1>My Profile</h1>
+    <!-- <UseProfileCard
       v-if="!edit"
       :user="user"
     />
@@ -18,7 +19,7 @@
 
       <hr />
       <PostList :posts="userPosts" />
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -26,6 +27,7 @@ import { mapGetters } from 'vuex'
 import PostList from '../components/PostList'
 import UseProfileCard from '../components/UseProfileCard'
 import UseProfileCardEditor from '../components/UseProfileCardEditor'
+import store from '@/store'
 export default {
   components: {
     PostList,
@@ -47,7 +49,18 @@ export default {
         return Object.values(this.$store.state.posts)
           .filter(post => post.userId === this.user['.key'])
       }
+      return []
     }
+  },
+  beforeRouteEnter (to, from, next) {
+    if (store.state.authId) {
+      next()
+    } else {
+      next({name: 'Home'})
+    }
+  },
+  created () {
+    this.$emit('ready')
   }
 }
 </script>
