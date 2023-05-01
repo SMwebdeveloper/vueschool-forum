@@ -14,7 +14,7 @@ import store from '@/store'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -57,13 +57,7 @@ export default new Router({
       name: 'Profile',
       component: Profile,
       props: true,
-      beforeEnter (to, from, next) {
-        if (store.state.authId) {
-          next()
-        } else {
-          next({name: 'Home'})
-        }
-      }
+      meta: {requiresAuth: true}
     },
     {
       path: '/me/edit',
@@ -96,3 +90,22 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  console.log(`navigaiting to ${to.name} from ${from.name}`)
+  // protected route
+  store.dispatch('initAuthentication')
+    .then(user => {
+      if (to.matched.some(route => route.requiresAuth)) {
+        if (user) {
+          next()
+        } else {
+          next({name: 'Home'})
+        }
+      } else {
+        next()
+      }
+    })
+})
+
+export default router
