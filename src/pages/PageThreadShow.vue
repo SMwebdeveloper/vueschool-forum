@@ -22,14 +22,21 @@
       >
     </p>
     <PostList :posts="posts" />
-    <PostEditor :threadId="id" />
+    <PostEditor
+      v-if="auhtUser"
+      :threadId="id"
+    />
+    <div v-else class="text-center" style="margin-bottom: 50px;">
+      <router-link :to="{name: 'Signin', query: {redirectTo: $route.path}}">Sign in</router-link> or
+      <router-link :to="{name: 'Register'}">Register</router-link> to post a reply
+    </div>
   </div>
 </template>
 <script>
 import PostList from '@/components/PostList.vue'
 import PostEditor from '@/components/PostEditor.vue'
 import { countObjectProperties } from '@/utils'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import asyncDataStatus from '@/mixins/asyncDataStatus'
 export default {
   components: {
@@ -44,6 +51,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      auhtUser: 'authUser'
+    }),
     thread () {
       return this.$store.state.threads[this.id]
     },
