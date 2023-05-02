@@ -1,6 +1,7 @@
 <template>
   <div class="flex-grid">
-    <UseProfileCard
+    <h2>My Profile</h2>
+    <!-- <UseProfileCard
       v-if="!edit"
       :user="user"
     />
@@ -18,7 +19,7 @@
 
       <hr />
       <PostList :posts="userPosts" />
-    </div>
+    </div>-->
   </div>
 </template>
 <script>
@@ -48,6 +49,9 @@ export default {
           .filter(post => post.userId === this.user['.key'])
       }
     }
+  },
+  created () {
+    this.$emit('ready')
   }
 }
 </script>

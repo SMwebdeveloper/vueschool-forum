@@ -64,7 +64,7 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      userDropdownOpen: true
+      userDropdownOpen: false
     }
   },
   computed: {

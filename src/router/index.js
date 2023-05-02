@@ -11,9 +11,11 @@ import Register from '@/pages/PageRegister'
 import Signin from '@/pages/PageSignin'
 import NotFound from '@/pages/PageNotFound'
 
+import store from '@/store'
+
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -55,7 +57,8 @@ export default new Router({
       path: '/me',
       name: 'Profile',
       component: Profile,
-      props: true
+      props: true,
+      meta: {requiresAuth: true}
     },
     {
       path: '/me/edit',
@@ -74,9 +77,33 @@ export default new Router({
       component: Signin
     },
     {
+      path: '/logout',
+      name: 'SignOut',
+      beforeEnter (to, from, next) {
+        store.dispatch('signOut')
+          .then(() => next({name: 'Home'}))
+      }
+    },
+    {
       path: '*',
       name: 'NotFound',
       component: NotFound
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  console.log(`navigation to ${to.name} from ${from.name}`)
+  if (to.matched.some(route => route.meta.requiresAuth)) {
+    // protected route
+    if (store.state.authId) {
+      next()
+    } else {
+      next({name: 'Home'})
+    }
+  } else {
+    next()
+  }
+})
+
+export default router
