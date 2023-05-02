@@ -107,7 +107,7 @@ router.beforeEach((to, from, next) => {
         if (user) {
           next()
         } else {
-          next({name: 'Signin'})
+          next({name: 'Signin', query: {redirectTo: to.path}})
         }
       } else if (to.matched.some(route => route.meta.requiresAuth)) {
         // protected route

@@ -60,13 +60,17 @@ export default {
           email: this.form.email,
           password: this.form.password
         })
-        .then(() => this.$router.push('/'))
+        .then(() => this.succesRedirect())
         .catch(error => alert('🤷‍️' + error.message))
     },
     signInWithGoogle () {
       this.$store.dispatch('signInWithGoogle')
-        .then(() => this.$router.push('/'))
+        .then(() => this.succesRedirect())
         .catch(error => alert('🤷‍️' + error.message))
+    },
+    succesRedirect () {
+      const redirectTo = this.$route.query.redirectTo || {name: 'Home'}
+      this.$router.push(redirectTo)
     }
   },
   created () {
