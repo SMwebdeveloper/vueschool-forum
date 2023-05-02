@@ -19,12 +19,6 @@ firebase.initializeApp({
   messagingSenderId: '202803263997',
   appId: '1:202803263997:web:c3f54e26fa45d9dad58194'
 })
-
-firebase.auth().onAuthStateChanged(user => {
-  if (user) {
-    store.dispatch('fetchAuthUser')
-  }
-})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

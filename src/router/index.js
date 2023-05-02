@@ -94,16 +94,19 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   console.log(`navigation to ${to.name} from ${from.name}`)
-  if (to.matched.some(route => route.meta.requiresAuth)) {
+  store.dispatch('initAuthentication')
+    .then(user => {
+      if (to.matched.some(route => route.meta.requiresAuth)) {
     // protected route
-    if (store.state.authId) {
-      next()
-    } else {
-      next({name: 'Home'})
-    }
-  } else {
-    next()
-  }
+        if (user) {
+          next()
+        } else {
+          next({name: 'Home'})
+        }
+      } else {
+        next()
+      }
+    })
 })
 
 export default router
