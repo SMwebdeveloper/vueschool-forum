@@ -1,6 +1,5 @@
 'use strict'
-import dotenv from 'dotenv'
-dotenv.config()
+require('dotenv').config()
 module.exports = {
   NODE_ENV: '"production"',
   FIREBASE_API_KEY: JSON.stringify(process.env.FIREBASE_API_KEY),

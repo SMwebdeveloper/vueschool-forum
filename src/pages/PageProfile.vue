@@ -1,7 +1,7 @@
 <template>
   <div class="flex-grid">
     <h2>My Profile</h2>
-    <!-- <UseProfileCard
+    <UseProfileCard
       v-if="!edit"
       :user="user"
     />
@@ -19,7 +19,7 @@
 
       <hr />
       <PostList :posts="userPosts" />
-    </div>-->
+    </div>
   </div>
 </template>
 <script>
@@ -52,6 +52,9 @@ export default {
   },
   created () {
     this.$emit('ready')
+  },
+  mounted () {
+    console.log(this.userPosts)
   }
 }
 </script>
