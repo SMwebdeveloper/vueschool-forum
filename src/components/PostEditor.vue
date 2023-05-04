@@ -1,21 +1,21 @@
 <template>
-  <form @submit.prevent="save">
-    <div class="form-group">
+  <form @submit.prevent='save'>
+    <div class='form-group'>
       <textarea
-        name=""
-        id=""
-        cols="30"
-        rows="10"
-        class="form-input"
-        v-model="text"
+        name='
+        id='
+        cols='30'
+        rows='10'
+        class='form-input'
+        v-model='text'
       ></textarea>
     </div>
-    <div class="form-actions">
-      <button v-if="isUpdate" @click.prevent="cancel" class="btn btn-ghost">
+    <div class='form-actions'>
+      <button v-if='isUpdate' @click.prevent='cancel' class='btn btn-ghost'>
         Cancel
       </button>
-      <button class="btn-blue">
-        {{ isUpdate ? "Update" : "Submit post" }}
+      <button class='btn-blue'>
+        {{ isUpdate ? 'Update' : 'Submit post' }}
       </button>
     </div>
   </form>
@@ -87,4 +87,5 @@ export default {
   }
 }
 </script>
-<style lang=""></style>
+
+<style scoped></style>

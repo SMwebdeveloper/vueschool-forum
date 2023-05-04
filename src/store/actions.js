@@ -10,7 +10,7 @@ export default {
     updates[`posts/${postId}`] = post
     updates[`threads/${post.threadId}/posts/${postId}`] = postId
     updates[`threads/${post.threadId}/contributors/${post.userId}`] = post.userId
-    updates[`posts/${post.userId}/posts/${postId}`] = postId
+    updates[`users/${post.userId}/posts/${postId}`] = postId
     firebase.database().ref().update(updates)
       .then(() => {
         commit('setItem', {resource: 'posts', item: post, id: postId})
@@ -21,12 +21,13 @@ export default {
       })
   },
 
-  initAuthentication ({dispatch, state, commit}) {
+  initAuthentication ({dispatch, commit, state}) {
     return new Promise((resolve, reject) => {
       // unsubscribe observer if already listening
       if (state.unsubscribeAuthObserver) {
         state.unsubscribeAuthObserver()
       }
+
       const unsubscribe = firebase.auth().onAuthStateChanged(user => {
         console.log('👣 the user has changed')
         if (user) {
@@ -39,6 +40,7 @@ export default {
       commit('setUnsubscribeAuthObserver', unsubscribe)
     })
   },
+
   createThread ({state, commit, dispatch}, {text, title, forumId}) {
     return new Promise((resolve, reject) => {
       const threadId = firebase.database().ref('threads').push().key
@@ -56,14 +58,14 @@ export default {
       updates[`users/${userId}/threads/${threadId}`] = threadId
 
       updates[`posts/${postId}`] = post
-      updates[`posts/${post.userId}/posts/${postId}`] = postId
+      updates[`users/${userId}/posts/${postId}`] = postId
       firebase.database().ref().update(updates)
         .then(() => {
           // update thread
           commit('setItem', {resource: 'threads', id: threadId, item: thread})
           commit('appendThreadToForum', {parentId: forumId, childId: threadId})
           commit('appendThreadToUser', {parentId: userId, childId: threadId})
-          // update posts
+          // update post
           commit('setItem', {resource: 'posts', item: post, id: postId})
           commit('appendPostToThread', {parentId: post.threadId, childId: postId})
           commit('appendPostToUser', {parentId: post.userId, childId: postId})
@@ -89,10 +91,10 @@ export default {
 
   registerUserWithEmailAndPassword ({dispatch}, {email, name, username, password, avatar = null}) {
     return firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(user => {
-      return dispatch('createUser', {id: user.uid, email, name, username, password, avatar})
-    })
-    .then(() => dispatch('fetchAuthUser'))
+      .then(user => {
+        return dispatch('createUser', {id: user.uid, email, name, username, password, avatar})
+      })
+      .then(() => dispatch('fetchAuthUser'))
   },
 
   signInWithEmailAndPassword (context, {email, password}) {
@@ -104,10 +106,10 @@ export default {
     return firebase.auth().signInWithPopup(provider)
       .then(data => {
         const user = data.user
-        firebase.database().ref('user').child(user.uid).once('value', snapshot => {
+        firebase.database().ref('users').child(user.uid).once('value', snapshot => {
           if (!snapshot.exists()) {
             return dispatch('createUser', {id: user.uid, name: user.displayName, email: user.email, username: user.email, avatar: user.photoURL})
-            .then(() => dispatch('fetchAuthUser'))
+              .then(() => dispatch('fetchAuthUser'))
           }
         })
       })
@@ -124,6 +126,7 @@ export default {
     return new Promise((resolve, reject) => {
       const thread = state.threads[id]
       const post = state.posts[thread.firstPostId]
+
       const edited = {
         at: Math.floor(Date.now() / 1000),
         by: state.authId
@@ -152,7 +155,7 @@ export default {
       }
 
       const updates = {text, edited}
-      firebase.database().ref('post').child(id).update(updates)
+      firebase.database().ref('posts').child(id).update(updates)
         .then(() => {
           commit('setPost', {postId: id, post: {...post, text, edited}})
           resolve(post)
@@ -167,6 +170,7 @@ export default {
   fetchAuthUser ({dispatch, commit}) {
     const userId = firebase.auth().currentUser.uid
     return new Promise((resolve, reject) => {
+      // check if user exists in the database
       firebase.database().ref('users').child(userId).once('value', snapshot => {
         if (snapshot.exists()) {
           return dispatch('fetchUser', {id: userId})
