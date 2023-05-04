@@ -7,7 +7,6 @@ export default {
 
   userPosts: state => id => {
     const user = state.users[id]
-    console.log(state.users[id])
     if (user.posts) {
       return Object.values(state.posts)
         .filter(post => post.userId === id)

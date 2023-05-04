@@ -50,9 +50,8 @@ export default {
     }
   },
   created () {
-    // this.$store.dispatch('fetchPosts', {ids: this.user.posts})
-    //   .then(() => this.asyncDataStatus_fetched())
-    this.$emit('ready')
+    this.$store.dispatch('fetchPosts', {ids: this.user.posts})
+      .then(() => this.asyncDataStatus_fetched())
   }
 }
 </script>

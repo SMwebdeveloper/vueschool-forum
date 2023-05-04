@@ -77,6 +77,7 @@ export default {
     ...mapActions(['fetchThread', 'fetchUser', 'fetchPosts'])
   },
   created () {
+    console.log('Page thread show created')
     // fetch thread
     this.fetchThread({id: this.id})
       .then(thread => {
