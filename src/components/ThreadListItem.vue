@@ -12,15 +12,6 @@
 
     <div class="activity">
       <p class="replies-count">{{ repliesCount }} replies</p>
-
-      <!-- <img class="avatar-medium" src="http://i0.kym-cdn.com/photos/images/facebook/000/010/934/46623-batman_pikachu_super.png" alt=""> -->
-
-      <!-- <div>
-        <p class="text-xsmall">
-          <a href="#">Bruce Wayne</a>
-        </p>
-        <p class="text-xsmall text-faded">2 hours ago</p>
-      </div>  -->
     </div>
   </div>
 </template>
@@ -34,10 +25,10 @@ export default {
   },
   computed: {
     repliesCount () {
-      return this.$store.getters.threadRepliesCount(this.thread['.key'])
+      return this.$store.getters['threads/threadRepliesCount'](this.thread['.key'])
     },
     user () {
-      return this.$store.state.users[this.thread.userId]
+      return this.$store.state.users.items[this.thread.userId]
     }
   }
 }

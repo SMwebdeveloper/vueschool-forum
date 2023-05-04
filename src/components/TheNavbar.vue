@@ -40,7 +40,7 @@
                 <router-link :to="{name: 'Profile'}">View Profile</router-link>
               </li>
               <li class="dropdown-menu-item">
-                <a @click.prevent="$store.dispatch('signOut')">
+                <a @click.prevent="$store.dispatch('auth/signOut')">
                   Sign Out
                 </a>
               </li>
@@ -69,7 +69,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      'user': 'authUser'
+      'user': 'auth/authUser'
     })
   }
 }

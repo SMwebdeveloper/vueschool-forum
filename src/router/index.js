@@ -100,7 +100,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   console.log(`navigation to ${to.name} from ${from.name}`)
-  store.dispatch('initAuthentication')
+  store.dispatch('auth/initAuthentication')
     .then(user => {
       if (to.matched.some(route => route.meta.requiresAuth)) {
     // protected route
