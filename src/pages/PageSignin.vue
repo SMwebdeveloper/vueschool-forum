@@ -64,7 +64,7 @@ export default {
         .catch(error => alert('🤷‍️' + error.message))
     },
     signInWithGoogle () {
-      this.$store.dispatch('signInWithGoogle')
+      this.$store.dispatch('auth/signInWithGoogle')
         .then(() => this.succesRedirect())
         .catch(error => alert('🤷‍️' + error.message))
     },
