@@ -3,8 +3,10 @@ import App from './App'
 import router from './router'
 import store from '@/store'
 import AppDate from '@/components/AppDate.vue'
-
+import Vuelidate from 'vuelidate'
 import firebase from 'firebase'
+
+Vue.use(Vuelidate)
 
 Vue.component('AppDate', AppDate)
 Vue.config.productionTip = false
